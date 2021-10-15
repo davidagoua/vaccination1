@@ -25,6 +25,8 @@ SECRET_KEY = 'django-insecure-9oh%o$ln55qtynmh^u58p&s$@u@$z^yc8taxw4*rrf59j%p1fr
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
+ENV = 'DEV'
+
 ALLOWED_HOSTS = []
 
 
@@ -76,15 +78,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'vaccination1.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
 
 
 # Password validation
@@ -149,3 +143,28 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ]
 }
+
+
+
+if ENV == "PREPROD":
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'vacuser',
+            'USER': 'vaccination',
+            'PASSWORD': 'Hikm_3434',
+            'HOST': 'localhost',
+            'PORT': '',
+        }
+    }
+
+else:
+    # Database
+    # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
+
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
