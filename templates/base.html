@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>VAccination Covid</title>
+</head>
+<body>
+
+<fieldset>
+    <legend>{{ user.centre }}</legend>
+    <ul>
+        <li>
+            <a href="{% url 'home' %}">Acceuil</a>
+        </li>
+        <li>
+            <a href="{% url 'logout' %}">Se deconnecter</a>
+        </li>
+        <li>
+            <a href="{% url 'update_profile' pk=user.pk %}">Profile</a>
+        </li>
+        <li>
+            <a href="{% url 'password_change' %}">Modifier mon mot de passe</a>
+        </li>
+        <li>
+            <a href="{% url 'vac:patient_create' %}">Ajouter un patient</a>
+        </li>
+    </ul>
+</fieldset>
+    <ul>
+        {% if user.role == ADMIN %}
+        <li>Menu Admin</li>
+        {% endif %}
+        {% if user.role == MEDECIN %}
+        <li>Menu Medecin</li>
+        {% endif %}
+        {% if user.role == ENREGISTREUR %}
+        <li>Menu Enregistreur</li>
+        {% endif %}
+        {% if user.role == OBSERVATEUR %}
+        <li>Menu Observateur</li>
+        {% endif %}
+        {% if user.role == CHEFCENTRE %}
+        <li>Menu Chef de centre</li>
+        {% endif %}
+    </ul>
+    <span></span>
+    {% block content %}
+
+    {% endblock %}
+
+    {% for message in messages %}
+        <script>
+            alert("{{ message }}")
+        </script>
+    {% endfor %}
+
+</body>
+</html>

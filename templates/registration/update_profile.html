@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<fieldset>
+<legend>Modifier mon profile</legend>
+    <form action="" method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Enregistrer</button>
+    </form>
+</fieldset>
+{% endblock %}

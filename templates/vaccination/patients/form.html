@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+    <fieldset>
+        <legend>Enregistrer un patient</legend>
+        <form method="post" action="">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button>Enregistrer</button>
+        </form>
+    </fieldset>
+</div>
+{% endblock %}
